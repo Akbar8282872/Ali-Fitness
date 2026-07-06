@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Blog | Ali Fitness</title>
+  <meta name="description" content="Expert fitness tips, training programs, nutrition advice and equipment guides from the Ali Fitness team.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+<div class="progress-bar"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" title="Cart">
+      🛒 <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="badge reveal">📝 Expert Insights</div>
+  <h1 class="reveal">Fitness <span class="highlight">Blog</span></h1>
+  <p class="reveal">Training tips, nutrition science, and equipment guides from Pakistan's top fitness experts.</p>
+
+  <!-- Blog tags filter -->
+  <div style="display:flex;justify-content:center;gap:10px;margin-top:32px;flex-wrap:wrap;" class="reveal">
+    <button class="filter-tab active" data-tag="all" onclick="filterBlogs('all',this)">All Posts</button>
+    <button class="filter-tab" data-tag="Training" onclick="filterBlogs('Training',this)">Training</button>
+    <button class="filter-tab" data-tag="Nutrition" onclick="filterBlogs('Nutrition',this)">Nutrition</button>
+    <button class="filter-tab" data-tag="Equipment" onclick="filterBlogs('Equipment',this)">Equipment</button>
+    <button class="filter-tab" data-tag="Recovery" onclick="filterBlogs('Recovery',this)">Recovery</button>
+    <button class="filter-tab" data-tag="Beginner" onclick="filterBlogs('Beginner',this)">Beginner</button>
+  </div>
+</div>
+
+<!-- Featured Post -->
+<div style="max-width:1280px;margin:0 auto;padding:0 40px 60px;" class="reveal">
+  <div style="background:linear-gradient(135deg,rgba(255,107,0,0.15),rgba(255,62,0,0.05));border:1px solid var(--border-bright);border-radius:var(--radius-lg);padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;">
+    <div>
+      <div class="badge" style="margin-bottom:16px;">⭐ Featured Post</div>
+      <h2 style="font-family:var(--font-display);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:800;line-height:1.2;margin-bottom:16px;">5 Essential Exercises for Building <span class="highlight">Raw Strength</span></h2>
+      <p style="color:var(--text-secondary);line-height:1.7;margin-bottom:24px;">Discover the foundational compound movements that elite powerlifters swear by to build pure, functional strength that transfers to every aspect of your fitness.</p>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="#" class="btn-primary">Read Article →</a>
+        <span style="color:var(--text-muted);font-size:0.85rem;">📅 June 28, 2026 &nbsp;·&nbsp; ⏱ 6 min read</span>
+      </div>
+    </div>
+    <div style="font-size:8rem;text-align:center;line-height:1;">💪</div>
+  </div>
+</div>
+
+<!-- Blog Grid -->
+<section class="blog-section">
+  <div class="container">
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- Newsletter -->
+<section style="padding:80px 40px;background:var(--bg-card);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div style="max-width:600px;margin:0 auto;text-align:center;" class="reveal">
+    <div class="badge" style="display:inline-flex;margin-bottom:16px;">📬 Newsletter</div>
+    <h2 style="font-family:var(--font-display);font-size:2rem;font-weight:800;margin-bottom:12px;">Get <span class="highlight">Exclusive</span> Tips</h2>
+    <p style="color:var(--text-secondary);margin-bottom:32px;">Join 15,000+ subscribers for weekly training tips, product launches, and exclusive deals.</p>
+    <form onsubmit="handleNewsletterSubmit(event)" style="display:flex;gap:12px;max-width:480px;margin:0 auto;">
+      <input type="email" id="newsletterEmail" placeholder="your@email.com" class="form-input" required style="flex:1;">
+      <button type="submit" class="btn-primary" style="white-space:nowrap;">Subscribe →</button>
+    </form>
+    <p style="color:var(--text-muted);font-size:0.8rem;margin-top:12px;">No spam. Unsubscribe anytime. 🔒</p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness. All rights reserved. Made with ❤️ in Pakistan.</p>
+      <a href="index.html" style="color:var(--primary);text-decoration:none;">← Back Home</a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top">↑</button>
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+let currentTag = 'all';
+
+function filterBlogs(tag, btn) {
+  currentTag = tag;
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderBlogs();
+}
+
+function renderBlogs() {
+  const grid = document.getElementById('blogGrid');
+  let posts = [...BLOG_POSTS];
+  if (currentTag !== 'all') {
+    posts = posts.filter(p => p.tag === currentTag);
+  }
+  if (posts.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">No posts found for this category.</div>`;
+    return;
+  }
+  grid.innerHTML = posts.map((p, i) => `
+    <a href="#" class="blog-card reveal" style="animation-delay:${i*0.1}s">
+      <div class="blog-card-img">
+        <span>${p.icon}</span>
+      </div>
+      <div class="blog-card-body">
+        <div class="blog-tag">${p.tag}</div>
+        <div class="blog-card-title">${p.title}</div>
+        <div class="blog-card-excerpt">${p.excerpt}</div>
+        <div class="blog-card-meta">
+          <span>✍️ ${p.author}</span>
+          <span>⏱ ${p.readTime}</span>
+        </div>
+        <div style="margin-top:8px;color:var(--text-muted);font-size:0.8rem;">📅 ${p.date}</div>
+      </div>
+    </a>
+  `).join('');
+}
+
+function handleNewsletterSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✅ Subscribed!';
+  btn.style.background = 'rgba(0,200,0,0.2)';
+  btn.style.border = '1px solid rgba(0,200,0,0.4)';
+  btn.disabled = true;
+  document.getElementById('newsletterEmail').value = '';
+}
+
+renderBlogs();
+</script>
+</body>
+</html>

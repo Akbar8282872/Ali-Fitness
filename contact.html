@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Ali Fitness — City Housing, Faisalabad</title>
+  <meta name="description" content="Contact Ali Fitness in City Housing, Faisalabad. Owner Akbar Ali. Phone 0317 7856049. Email akbarali1582005@gmail.com. We're here to help with orders and advice.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+<div class="progress-bar"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" title="Cart">
+      🛒 <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- Contact -->
+<div class="contact-section">
+  <div class="badge reveal">📬 Get in Touch</div>
+  <div class="contact-grid" style="margin-top:32px;">
+    <div class="contact-info reveal-left">
+      <h2>We'd Love to <span class="highlight">Hear From You</span></h2>
+      <p>Have a question about a product? Need help with your order? Visit us in City Housing, Faisalabad or reach out — Akbar Ali and the team are here 6 days a week.</p>
+      
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div>
+            <div class="contact-item-label">Phone</div>
+            <div class="contact-item-value">0317 7856049</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div>
+            <div class="contact-item-label">Email</div>
+            <div class="contact-item-value">akbarali1582005@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div>
+            <div class="contact-item-label">Address</div>
+            <div class="contact-item-value">Ali Fitness, City Housing, Faisalabad, Punjab, Pakistan</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">⏰</div>
+          <div>
+            <div class="contact-item-label">Working Hours</div>
+            <div class="contact-item-value">Mon–Sat: 9AM – 8PM</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map placeholder -->
+      <div style="margin-top:32px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius-lg);height:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div style="font-size:3rem;">🗺️</div>
+        <div style="font-family:var(--font-heading);font-weight:700;">Ali Fitness</div>
+        <div style="font-size:0.85rem;color:var(--text-muted);">City Housing, Faisalabad</div>
+        <a href="https://maps.google.com" target="_blank" class="btn-outline" style="padding:8px 20px;font-size:0.8rem;">Open in Maps</a>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal-right">
+      <h3>Send us a <span class="highlight">Message</span></h3>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div>
+            <label class="form-label">First Name</label>
+            <input class="form-input" type="text" id="firstName" placeholder="Ahmad" required>
+          </div>
+          <div>
+            <label class="form-label">Last Name</label>
+            <input class="form-input" type="text" id="lastName" placeholder="Khan" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input class="form-input" type="email" id="email" placeholder="ahmad@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input class="form-input" type="tel" id="phone" placeholder="+92 300 000 0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <select class="form-select" id="subject">
+            <option value="">Select a topic...</option>
+            <option>Product Inquiry</option>
+            <option>Order Support</option>
+            <option>Returns & Refunds</option>
+            <option>Fitness Advice</option>
+            <option>Wholesale / Bulk Orders</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea class="form-textarea" id="message" placeholder="Tell us how we can help..." required></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:14px;" id="submitBtn">
+          Send Message 🚀
+        </button>
+        <div id="formSuccess" style="display:none;text-align:center;padding:16px;background:rgba(0,200,0,0.1);border:1px solid rgba(0,200,0,0.3);border-radius:10px;margin-top:16px;color:#00cc44;">
+          ✅ Thank you! We'll get back to you within 24 hours.
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ Section -->
+<section style="padding:80px 40px;background:var(--bg-card);border-top:1px solid var(--border);">
+  <div style="max-width:800px;margin:0 auto;">
+    <h2 class="section-title reveal">Frequently Asked <span class="highlight">Questions</span></h2>
+    <div style="margin-top:40px;" id="faqList"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness | City Housing, Faisalabad | Owner: Akbar Ali | 0317 7856049</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top">↑</button>
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+  setTimeout(() => {
+    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById('contactForm').reset();
+    btn.textContent = 'Send Message 🚀';
+    btn.disabled = false;
+  }, 1500);
+}
+
+const FAQS = [
+  { q: "How long does delivery take?", a: "We deliver within 2-5 business days across Pakistan. Lahore, Karachi, and Islamabad typically receive orders within 2 days." },
+  { q: "Do you offer free delivery?", a: "Yes! Free delivery is available on all orders over $100 (or PKR 28,000). Standard delivery is PKR 250 for smaller orders." },
+  { q: "What is your return policy?", a: "We offer a 30-day hassle-free return policy. Items must be in original condition. Contact us to initiate a return." },
+  { q: "Do your products come with a warranty?", a: "Yes, all Ali Fitness equipment comes with a minimum 1-year warranty. Premium items like power racks include a lifetime structural warranty." },
+  { q: "Can I visit your showroom?", a: "Absolutely! Our Lahore showroom is open Mon–Sat, 9AM–8PM. DHA Phase 6. You can try all equipment before purchasing." },
+];
+
+function renderFAQs() {
+  const list = document.getElementById('faqList');
+  list.innerHTML = FAQS.map((faq, i) => `
+    <div style="margin-bottom:12px;background:var(--bg-surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;" class="reveal">
+      <button onclick="toggleFAQ(${i})" style="width:100%;text-align:left;background:none;border:none;color:var(--text-primary);padding:18px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-heading);font-size:1rem;font-weight:600;">
+        <span>${faq.q}</span>
+        <span id="faq-icon-${i}" style="color:var(--primary);font-size:1.2rem;transition:var(--transition);">+</span>
+      </button>
+      <div id="faq-body-${i}" style="display:none;padding:0 24px 18px;color:var(--text-secondary);font-size:0.95rem;line-height:1.7;">${faq.a}</div>
+    </div>
+  `).join('');
+}
+
+function toggleFAQ(i) {
+  const body = document.getElementById(`faq-body-${i}`);
+  const icon = document.getElementById(`faq-icon-${i}`);
+  const open = body.style.display !== 'none';
+  body.style.display = open ? 'none' : 'block';
+  icon.textContent = open ? '+' : '−';
+  icon.style.transform = open ? '' : 'rotate(180deg)';
+}
+
+renderFAQs();
+</script>
+</body>
+</html>

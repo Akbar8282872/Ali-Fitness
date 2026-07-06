@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart | Ali Fitness</title>
+  <meta name="description" content="Review your Ali Fitness shopping cart, apply promo codes, and checkout securely.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+<div class="progress-bar"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" title="Cart">
+      🛒 <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- Cart Section -->
+<div class="cart-section">
+  <h1 class="cart-title">
+    🛒 <span>Your Cart</span>
+    <span id="cartItemCount" style="font-size:1rem;font-weight:400;color:var(--text-muted);"></span>
+  </h1>
+
+  <div class="cart-grid" id="cartWrapper">
+    <!-- Rendered by JS -->
+  </div>
+</div>
+
+<!-- Recommended Products -->
+<section style="padding:0 40px 80px;max-width:1280px;margin:0 auto;">
+  <h2 class="section-title reveal" style="text-align:left;margin-bottom:32px;">You Might Also <span class="highlight">Like</span></h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;" id="recGrid"></div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness. All rights reserved.</p>
+      <a href="products.html" style="color:var(--primary);text-decoration:none;">← Continue Shopping</a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top">↑</button>
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+let appliedPromo = false;
+let discount = 0;
+
+function renderCart() {
+  const wrapper = document.getElementById('cartWrapper');
+  const count = document.getElementById('cartItemCount');
+  count.textContent = `(${cart.length} ${cart.length === 1 ? 'item' : 'items'})`;
+
+  if (cart.length === 0) {
+    wrapper.innerHTML = `
+      <div style="grid-column:1/-1;">
+        <div class="empty-cart">
+          <div class="empty-cart-icon">🛒</div>
+          <h3>Your cart is empty</h3>
+          <p>Add some premium gym gear to get started!</p>
+          <a href="products.html" class="btn-primary" style="margin-top:20px;display:inline-flex;">Browse Products →</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  const subtotal = getCartTotal();
+  const shipping = subtotal >= 100 ? 0 : 9.99;
+  const discountAmount = appliedPromo ? subtotal * 0.10 : 0;
+  const total = subtotal - discountAmount + shipping;
+
+  wrapper.innerHTML = `
+    <div>
+      <div id="cartItems">${renderCartItems()}</div>
+      <div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;">
+        <a href="products.html" class="btn-outline" style="font-size:0.85rem;">← Continue Shopping</a>
+        <button onclick="clearCart()" style="background:rgba(255,62,0,0.1);border:1px solid rgba(255,62,0,0.2);color:#ff4444;padding:10px 20px;border-radius:8px;cursor:pointer;font-family:var(--font-heading);font-weight:600;">Clear Cart</button>
+      </div>
+    </div>
+    <div>
+      <div class="order-summary">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>${formatPrice(subtotal)}</span></div>
+        ${appliedPromo ? `<div class="summary-row" style="color:#00cc44;"><span>Promo (ALIFIT10)</span><span>−${formatPrice(discountAmount)}</span></div>` : ''}
+        <div class="summary-row"><span>Shipping</span><span>${shipping === 0 ? '<span style="color:#00cc44;">FREE</span>' : formatPrice(shipping)}</span></div>
+        ${shipping > 0 ? `<div style="font-size:0.8rem;color:var(--text-muted);padding:4px 0;">Add ${formatPrice(100 - subtotal)} more for free shipping</div>` : ''}
+        <div class="summary-total">
+          <span>Total</span>
+          <span style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">${formatPrice(total)}</span>
+        </div>
+        
+        <div class="promo-input-wrap">
+          <input type="text" class="promo-input" id="promoCode" placeholder="Promo code" maxlength="20">
+          <button onclick="applyPromo()" class="btn-primary" style="padding:10px 16px;font-size:0.85rem;">Apply</button>
+        </div>
+        <div id="promoMsg" style="font-size:0.8rem;margin-bottom:12px;"></div>
+        
+        <button onclick="handleCheckout()" class="btn-primary" style="width:100%;justify-content:center;padding:16px;font-size:1rem;margin-bottom:12px;">
+          Checkout Securely →
+        </button>
+        <div style="text-align:center;color:var(--text-muted);font-size:0.8rem;display:flex;justify-content:center;gap:12px;">
+          <span>🔒 SSL Secured</span>
+          <span>💳 All Cards</span>
+          <span>🚚 Fast Delivery</span>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderCartItems() {
+  return cart.map(item => `
+    <div class="cart-item" id="cart-item-${item.id}">
+      <img src="${item.image}" alt="${item.name}" class="cart-item-img">
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-category">${item.category}</div>
+        <div class="cart-item-actions">
+          <div class="qty-controls" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;display:inline-flex;">
+            <button class="qty-btn" onclick="updateCartQty(${item.id}, ${item.qty - 1})">−</button>
+            <span style="padding:0 16px;display:flex;align-items:center;font-family:var(--font-display);font-weight:700;background:var(--bg-card);border-left:1px solid var(--border);border-right:1px solid var(--border);">${item.qty}</span>
+            <button class="qty-btn" onclick="updateCartQty(${item.id}, ${item.qty + 1})">+</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:12px;">
+        <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+        <div style="font-size:0.8rem;color:var(--text-muted);">${formatPrice(item.price)} each</div>
+        <button class="cart-remove-btn" onclick="handleRemove(${item.id})">🗑</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function updateCartQty(id, newQty) {
+  if (newQty < 1) { handleRemove(id); return; }
+  updateCartItemQty(id, newQty);
+  renderCart();
+  updateCartBadge();
+}
+
+function handleRemove(id) {
+  const item = document.getElementById(`cart-item-${id}`);
+  if (item) { item.style.opacity = '0'; item.style.transform = 'translateX(20px)'; }
+  setTimeout(() => {
+    removeFromCart(id);
+    renderCart();
+    updateCartBadge();
+  }, 300);
+}
+
+function clearCart() {
+  if (!confirm('Remove all items from cart?')) return;
+  cart = [];
+  saveCart();
+  renderCart();
+  updateCartBadge();
+}
+
+function applyPromo() {
+  const code = document.getElementById('promoCode').value.trim().toUpperCase();
+  const msg = document.getElementById('promoMsg');
+  if (code === 'ALIFIT10' || code === 'ALIFIT40') {
+    appliedPromo = true;
+    msg.style.color = '#00cc44';
+    msg.textContent = '✅ Promo code applied! 10% discount.';
+    renderCart();
+  } else {
+    msg.style.color = '#ff4444';
+    msg.textContent = '❌ Invalid promo code. Try ALIFIT10';
+  }
+}
+
+function handleCheckout() {
+  if (cart.length === 0) return;
+  const btn = event.target;
+  btn.textContent = '⏳ Processing...';
+  btn.disabled = true;
+  setTimeout(() => {
+    alert('🎉 Order Placed Successfully!\n\nThank you for shopping with Ali Fitness!\nYou\'ll receive a confirmation email shortly.\n\nDelivery: 2-5 business days.');
+    cart = [];
+    saveCart();
+    renderCart();
+    updateCartBadge();
+  }, 1500);
+}
+
+function renderRecommended() {
+  const grid = document.getElementById('recGrid');
+  const recs = PRODUCTS.slice(0, 4);
+  grid.innerHTML = recs.map((p, i) => `
+    <div class="product-card reveal" style="animation-delay:${i*0.1}s" onclick="window.location.href='product-detail.html?id=${p.id}'">
+      ${p.badge ? `<div class="product-card-badge">${p.badge}</div>` : ''}
+      <div class="product-card-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-category">${p.category}</div>
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-footer">
+          <span class="product-price">${formatPrice(p.price)}</span>
+          <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id});renderCart();">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderCart();
+renderRecommended();
+</script>
+</body>
+</html>

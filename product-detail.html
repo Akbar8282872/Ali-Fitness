@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | Ali Fitness</title>
+  <meta name="description" content="View detailed information, features, and specifications for Ali Fitness premium gym products.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+<div class="progress-bar"></div>
+
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" title="Cart">
+      🛒
+      <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- Breadcrumb -->
+<div style="padding:100px 40px 0;max-width:1280px;margin:0 auto;">
+  <nav style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:0.85rem;">
+    <a href="index.html" style="color:var(--text-muted);text-decoration:none;">Home</a>
+    <span>›</span>
+    <a href="products.html" style="color:var(--text-muted);text-decoration:none;">Products</a>
+    <span>›</span>
+    <span id="breadcrumbName" style="color:var(--primary);">Loading...</span>
+  </nav>
+</div>
+
+<!-- Product Detail -->
+<div class="product-detail" id="productDetail">
+  <div style="text-align:center;padding:80px 0;">
+    <div style="font-size:3rem;">⏳</div>
+    <p style="color:var(--text-muted);">Loading product...</p>
+  </div>
+</div>
+
+<!-- Related Products -->
+<section style="padding:0 0 100px;background:var(--bg-card);border-top:1px solid var(--border);">
+  <div class="container" style="padding-top:60px;">
+    <h2 class="section-title reveal">You May Also <span class="highlight">Like</span></h2>
+    <div class="products-grid" id="relatedGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness. All rights reserved.</p>
+      <a href="products.html" style="color:var(--primary);text-decoration:none;">← Back to Products</a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top">↑</button>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const productId = parseInt(params.get('id'));
+const product = PRODUCTS.find(p => p.id === productId) || PRODUCTS[0];
+
+// Update page title
+document.title = `${product.name} | Ali Fitness`;
+document.getElementById('breadcrumbName').textContent = product.name;
+
+// Get related products (same category, excluding current)
+const related = PRODUCTS.filter(p => p.categorySlug === product.categorySlug && p.id !== product.id).slice(0, 4);
+
+let qty = 1;
+
+function renderProduct() {
+  const detail = document.getElementById('productDetail');
+  const discount = product.oldPrice ? Math.round((1 - product.price / product.oldPrice) * 100) : 0;
+
+  detail.innerHTML = `
+    <div class="product-detail-grid">
+      <div class="product-gallery reveal-left">
+        <div class="gallery-main">
+          <img src="${product.image}" alt="${product.name}" id="mainImg">
+        </div>
+        <div class="gallery-thumbs">
+          ${[product.image, product.image, product.image].map((img, i) => `
+            <div class="thumb ${i===0?'active':''}" onclick="switchImg('${img}', this)">
+              <img src="${img}" alt="Thumb ${i+1}">
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div class="product-info reveal-right">
+        <div class="product-detail-category">${product.category}</div>
+        <h1 class="product-detail-name">${product.name}</h1>
+        <div class="product-detail-rating">
+          <div style="display:flex;gap:3px;color:var(--secondary);">
+            ${'⭐'.repeat(Math.round(product.rating))}
+          </div>
+          <span style="font-family:var(--font-display);font-weight:700;">${product.rating}</span>
+          <span style="color:var(--text-muted);font-size:0.85rem;">(${product.reviews} reviews)</span>
+        </div>
+        ${product.badge ? `<div class="badge" style="margin-bottom:16px;">${product.badge} ${discount ? `— Save ${discount}%` : ''}</div>` : ''}
+        <div class="product-detail-price">${formatPrice(product.price)}</div>
+        ${product.oldPrice ? `<div class="product-detail-old-price">Was ${formatPrice(product.oldPrice)}</div>` : ''}
+        <p class="product-detail-desc">${product.desc}</p>
+        
+        <div class="quantity-selector">
+          <span class="qty-label">Quantity</span>
+          <div class="qty-controls">
+            <button class="qty-btn" id="qtyMinus" onclick="changeQty(-1)">−</button>
+            <input class="qty-input" id="qtyInput" type="number" value="1" min="1" max="99" onchange="qty=parseInt(this.value)||1">
+            <button class="qty-btn" id="qtyPlus" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+        
+        <div class="product-actions">
+          <button class="btn-primary btn-buy" onclick="handleAddToCart()">
+            🛒 Add to Cart
+          </button>
+          <a href="cart.html" class="btn-outline" style="padding:14px 24px;">Buy Now →</a>
+        </div>
+        
+        <div class="product-features">
+          <h3 style="font-family:var(--font-heading);font-size:1rem;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:14px;">Key Features</h3>
+          <ul class="feature-list">
+            ${product.features.map(f => `<li>${f}</li>`).join('')}
+          </ul>
+        </div>
+        
+        <div class="product-guarantee">
+          <div class="guarantee-item">
+            <div class="guarantee-icon">🚚</div>
+            <div class="guarantee-text">Free Delivery<br>On orders $100+</div>
+          </div>
+          <div class="guarantee-item">
+            <div class="guarantee-icon">🔄</div>
+            <div class="guarantee-text">30-Day<br>Returns</div>
+          </div>
+          <div class="guarantee-item">
+            <div class="guarantee-icon">🛡️</div>
+            <div class="guarantee-text">1-Year<br>Warranty</div>
+          </div>
+          <div class="guarantee-item">
+            <div class="guarantee-icon">💳</div>
+            <div class="guarantee-text">Secure<br>Payment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function switchImg(src, thumb) {
+  document.getElementById('mainImg').src = src;
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+
+function changeQty(delta) {
+  qty = Math.max(1, Math.min(99, qty + delta));
+  const input = document.getElementById('qtyInput');
+  if (input) input.value = qty;
+}
+
+function handleAddToCart() {
+  addToCart(product.id, qty);
+}
+
+// Related products
+function renderRelated() {
+  const grid = document.getElementById('relatedGrid');
+  if (!grid || related.length === 0) {
+    grid.innerHTML = '<p style="color:var(--text-muted);">No related products found.</p>';
+    return;
+  }
+  grid.innerHTML = related.map((p, i) => `
+    <div class="product-card reveal" style="animation-delay:${i*0.1}s" onclick="window.location.href='product-detail.html?id=${p.id}'">
+      ${p.badge ? `<div class="product-card-badge">${p.badge}</div>` : ''}
+      <div class="product-card-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-card-overlay">
+          <a href="product-detail.html?id=${p.id}" class="overlay-btn">View Details</a>
+          <button class="overlay-btn" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-category">${p.category}</div>
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-footer">
+          <span class="product-price">${formatPrice(p.price)}</span>
+          <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})">+</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderProduct();
+renderRelated();
+</script>
+</body>
+</html>

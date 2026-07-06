@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ali Fitness | Premium Gym Equipment — Faisalabad City Housing</title>
+  <meta name="description" content="Ali Fitness – Faisalabad's premier gym equipment store in City Housing. Owner Akbar Ali. Premium weights, accessories, and nutrition gear. Call 0317 7856049.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-logo">ALI FITNESS</div>
+  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <p style="color:var(--text-muted);font-size:0.8rem;letter-spacing:0.1em;text-transform:uppercase;">Loading your fitness journey...</p>
+</div>
+
+<!-- Cursor Glow -->
+<div class="cursor-glow"></div>
+
+<!-- Progress Bar -->
+<div class="progress-bar"></div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" id="cartBtn" title="Shopping Cart">
+      🛒
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <a href="products.html" class="btn-primary">Shop Now</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- HERO SECTION -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-particles"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-dot"></span> Faisalabad's #1 Fitness Store
+      </div>
+      <h1 class="hero-title">
+        <span class="line">FORGE YOUR</span>
+        <span class="line line-orange">STRONGEST</span>
+        <span class="line">SELF</span>
+      </h1>
+      <p class="hero-desc">
+        Premium gym equipment engineered for champions. From beginner to elite – we have everything you need to conquer every rep, every set, every goal.
+      </p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn-primary btn-hero">
+          Shop All Products →
+        </a>
+        <a href="about.html" class="btn-outline btn-hero">
+          Our Story
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-value" data-count="5" data-suffix="K+">0</div>
+          <div class="stat-label">Happy Athletes</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-count="100" data-suffix="+">0</div>
+          <div class="stat-label">Products</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value" data-count="4.9" data-suffix="★">0</div>
+          <div class="stat-label">Avg. Rating</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-image-wrap">
+        <div class="hero-glow-ring"></div>
+        <img class="hero-main-img" src="images/hero_akbar_sando.jpg" alt="Akbar Ali - Ali Fitness Premium Gym Equipment" loading="eager">
+        <div class="hero-badge">
+          <span class="hero-badge-icon">🚚</span>
+          <div class="hero-badge-text">
+            <strong>Free Delivery</strong>
+            <span>On orders over $100</span>
+          </div>
+        </div>
+        <div class="hero-badge2">
+          <strong>30</strong>
+          <span>Day Returns</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span class="scroll-text">Scroll Down</span>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Premium Quality</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> City Housing · Faisalabad</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> 30-Day Returns</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Owner: Akbar Ali</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Lifetime Warranty</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Call 0317 7856049</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Secure Payments</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Premium Quality</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> City Housing · Faisalabad</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> 30-Day Returns</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Owner: Akbar Ali</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Lifetime Warranty</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Call 0317 7856049</span>
+    <span class="marquee-item"><span class="marquee-dot">⬥</span> Secure Payments</span>
+  </div>
+</div>
+
+<!-- CATEGORIES SECTION -->
+<section class="categories">
+  <div class="container">
+    <div class="badge reveal">Browse Categories</div>
+    <h2 class="section-title reveal"><span class="highlight">Shop by</span> Category</h2>
+    <p class="section-subtitle reveal">Everything you need, exactly where you need it.</p>
+    <div class="categories-grid">
+      <a href="products.html?cat=weights" class="cat-card reveal">
+        <div class="cat-icon">🏋️</div>
+        <div class="cat-name">Weights & Barbells</div>
+        <div class="cat-count">24 Products</div>
+      </a>
+      <a href="products.html?cat=equipment" class="cat-card reveal">
+        <div class="cat-icon">🔩</div>
+        <div class="cat-name">Machines & Racks</div>
+        <div class="cat-count">18 Products</div>
+      </a>
+      <a href="products.html?cat=accessories" class="cat-card reveal">
+        <div class="cat-icon">🧤</div>
+        <div class="cat-name">Accessories</div>
+        <div class="cat-count">55 Products</div>
+      </a>
+      <a href="products.html?cat=nutrition" class="cat-card reveal">
+        <div class="cat-icon">🥤</div>
+        <div class="cat-name">Nutrition & Gear</div>
+        <div class="cat-count">33 Products</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS -->
+<section class="featured">
+  <div class="container">
+    <div class="badge reveal">🔥 Hot Right Now</div>
+    <h2 class="section-title reveal">Featured <span class="highlight">Products</span></h2>
+    <p class="section-subtitle reveal">Hand-picked by our fitness experts. The best of the best.</p>
+    <div class="products-grid" id="featuredGrid"></div>
+    <div style="text-align:center;margin-top:48px;" class="reveal">
+      <a href="products.html" class="btn-outline btn-lg">View All Products →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROMO BANNER -->
+<div class="promo-section">
+  <div class="promo-banner reveal">
+    <div class="promo-text">
+      <h2>Summer Sale — Up to <span class="highlight">40% OFF</span></h2>
+      <p>Don't miss our biggest sale of the year. Limited time only on selected products. Use code at checkout.</p>
+      <div class="promo-code">
+        🏷️ <span>ALIFIT40</span>
+        <button onclick="navigator.clipboard.writeText('ALIFIT40');showToast('Promo code copied! 🎉')" class="btn-primary" style="padding:6px 14px;font-size:0.8rem;">Copy</button>
+      </div>
+    </div>
+    <div style="text-align:center;">
+      <div style="font-family:var(--font-display);font-size:5rem;font-weight:900;line-height:1;" class="highlight">40%</div>
+      <div style="font-size:1rem;color:var(--text-secondary);">OFF Selected Items</div>
+      <a href="products.html" class="btn-primary" style="margin-top:20px;display:inline-flex;">Shop the Sale →</a>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="badge reveal">⭐ Customer Reviews</div>
+    <h2 class="section-title reveal">What Athletes <span class="highlight">Say</span></h2>
+    <p class="section-subtitle reveal">Real people. Real results. Real gains.</p>
+    <div class="testimonials-grid" id="testimonialsGrid"></div>
+  </div>
+</section>
+
+<!-- CTA SECTION -->
+<section class="cta-section">
+  <div class="container">
+    <div class="badge reveal">💪 Start Today</div>
+    <h2 class="reveal">Ready to <span class="highlight">Level Up?</span></h2>
+    <p class="reveal">  Join Faisalabad's growing fitness community at City Housing's #1 gym gear store.</p>
+    <div class="cta-actions reveal">
+      <a href="products.html" class="btn-primary btn-lg">Shop Now — Free Delivery</a>
+      <a href="contact.html" class="btn-outline btn-lg">Talk to an Expert</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">🏋️</div>
+          <span class="nav-logo-text">ALI FITNESS</span>
+        </a>
+        <p>Faisalabad's premier gym equipment store. Located in City Housing, Faisalabad. Owner: Akbar Ali.<br>📞 0317 7856049</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Instagram">📸</a>
+          <a href="#" class="social-link" title="Facebook">📘</a>
+          <a href="#" class="social-link" title="YouTube">▶️</a>
+          <a href="#" class="social-link" title="TikTok">🎵</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html?cat=weights">Weights</a></li>
+          <li><a href="products.html?cat=equipment">Equipment</a></li>
+          <li><a href="products.html?cat=accessories">Accessories</a></li>
+          <li><a href="products.html?cat=nutrition">Nutrition</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Press</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="contact.html">Help Center</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness | City Housing, Faisalabad | Owner: Akbar Ali | 0317 7856049</p>
+      <p style="display:flex;gap:20px;flex-wrap:wrap;">
+        <a href="#" style="color:var(--text-muted);text-decoration:none;font-size:0.85rem;">Privacy Policy</a>
+        <a href="#" style="color:var(--text-muted);text-decoration:none;font-size:0.85rem;">Terms of Service</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top -->
+<button class="back-top" title="Back to Top">↑</button>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+// Render featured products (first 6)
+function renderFeatured() {
+  const grid = document.getElementById('featuredGrid');
+  if (!grid) return;
+  const featured = PRODUCTS.slice(0, 6);
+  grid.innerHTML = featured.map(p => `
+    <div class="product-card reveal" onclick="window.location.href='product-detail.html?id=${p.id}'">
+      ${p.badge ? `<div class="product-card-badge">${p.badge}</div>` : ''}
+      <div class="product-card-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-card-overlay">
+          <a href="product-detail.html?id=${p.id}" class="overlay-btn">View Details</a>
+          <button class="overlay-btn" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-category">${p.category}</div>
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-desc">${p.desc.substring(0, 80)}...</div>
+        <div class="product-card-footer">
+          <div>
+            <span class="product-price">${formatPrice(p.price)}</span>
+            ${p.oldPrice ? `<span class="product-old-price">${formatPrice(p.oldPrice)}</span>` : ''}
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="product-rating">
+              <span>${p.rating}</span>
+              <span style="color:var(--secondary);">★</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to Cart">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  // re-trigger scroll reveal
+  initScrollReveal && initScrollReveal();
+}
+
+// Testimonials
+const TESTIMONIALS = [
+  { name: "Ahmad R.", title: "Powerlifter · Lahore", text: "Ali Fitness completely transformed my home gym. The power rack is absolutely built like a tank. Zero regrets – worth every rupee!", avatar: "AR", stars: 5 },
+  { name: "Sara M.", title: "CrossFit Athlete · Karachi", text: "The resistance bands kit is insane value. Full kit arrived in 2 days, everything feels premium. My clients love the new accessories!", avatar: "SM", stars: 5 },
+  { name: "Hassan K.", title: "Bodybuilder · Islamabad", text: "Best dumbbells I've ever owned. The rubber coating is thick, handles are perfect. Customer service answered my questions within minutes.", avatar: "HK", stars: 5 },
+];
+
+function renderTestimonials() {
+  const grid = document.getElementById('testimonialsGrid');
+  if (!grid) return;
+  grid.innerHTML = TESTIMONIALS.map(t => `
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">${'⭐'.repeat(t.stars)}</div>
+      <p class="testimonial-text">"${t.text}"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">${t.avatar}</div>
+        <div>
+          <div class="author-name">${t.name}</div>
+          <div class="author-title">${t.title}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+renderFeatured();
+renderTestimonials();
+</script>
+</body>
+</html>

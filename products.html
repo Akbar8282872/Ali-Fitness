@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop All Products | Ali Fitness</title>
+  <meta name="description" content="Browse Ali Fitness's full range of premium gym equipment, weights, accessories and nutrition. Filter by category and find your perfect gear.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏋️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="cursor-glow"></div>
+<div class="progress-bar"></div>
+
+<!-- Navigation -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">🏋️</div>
+    <span class="nav-logo-text">ALI FITNESS</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="cart-btn" onclick="window.location.href='cart.html'" title="Cart">
+      🛒
+      <span class="cart-count">0</span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="products.html">Products</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="contact.html">Contact</a>
+  <a href="cart.html">Cart 🛒</a>
+</div>
+
+<!-- Page Hero -->
+<div class="page-hero">
+  <div class="badge reveal">🛍️ Full Catalog</div>
+  <h1 class="reveal">All <span class="highlight">Products</span></h1>
+  <p class="reveal">World-class fitness gear, handpicked for every athlete.</p>
+</div>
+
+<!-- Toolbar -->
+<div class="products-section">
+  <div class="products-toolbar">
+    <div class="filter-tabs" id="filterTabs">
+      <button class="filter-tab active" data-cat="all">All</button>
+      <button class="filter-tab" data-cat="weights">Weights</button>
+      <button class="filter-tab" data-cat="equipment">Equipment</button>
+      <button class="filter-tab" data-cat="accessories">Accessories</button>
+      <button class="filter-tab" data-cat="nutrition">Nutrition</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <span style="color:var(--text-muted);font-size:0.85rem;" id="productCount">Showing all products</span>
+      <select class="sort-select" id="sortSelect">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="rating">Highest Rated</option>
+        <option value="name">Name A-Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="products-container">
+    <div class="products-grid" id="productsGrid"></div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="nav-logo-icon">🏋️</div>
+          <span class="nav-logo-text">ALI FITNESS</span>
+        </a>
+        <p>Pakistan's premier destination for premium gym equipment and fitness accessories.</p>
+        <div class="social-links">
+          <a href="#" class="social-link">📸</a>
+          <a href="#" class="social-link">📘</a>
+          <a href="#" class="social-link">▶️</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Products</a></li>
+          <li><a href="products.html?cat=weights">Weights</a></li>
+          <li><a href="products.html?cat=equipment">Equipment</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Ali Fitness. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top">↑</button>
+
+<script src="products.js"></script>
+<script src="script.js"></script>
+<script>
+let currentCat = 'all';
+let currentSort = 'default';
+
+function getFilteredProducts() {
+  let list = [...PRODUCTS];
+  if (currentCat !== 'all') {
+    list = list.filter(p => p.categorySlug === currentCat);
+  }
+  switch (currentSort) {
+    case 'price-asc': list.sort((a,b) => a.price - b.price); break;
+    case 'price-desc': list.sort((a,b) => b.price - a.price); break;
+    case 'rating': list.sort((a,b) => b.rating - a.rating); break;
+    case 'name': list.sort((a,b) => a.name.localeCompare(b.name)); break;
+  }
+  return list;
+}
+
+function renderProducts() {
+  const grid = document.getElementById('productsGrid');
+  const count = document.getElementById('productCount');
+  const list = getFilteredProducts();
+  count.textContent = `Showing ${list.length} products`;
+  grid.innerHTML = list.map((p, i) => `
+    <div class="product-card" style="animation-delay:${i * 0.08}s" onclick="window.location.href='product-detail.html?id=${p.id}'">
+      ${p.badge ? `<div class="product-card-badge">${p.badge}</div>` : ''}
+      <div class="product-card-img">
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="product-card-overlay">
+          <a href="product-detail.html?id=${p.id}" class="overlay-btn">View Details</a>
+          <button class="overlay-btn" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart</button>
+        </div>
+      </div>
+      <div class="product-card-body">
+        <div class="product-card-category">${p.category}</div>
+        <div class="product-card-name">${p.name}</div>
+        <div class="product-card-desc">${p.desc.substring(0, 80)}...</div>
+        <div class="product-card-footer">
+          <div>
+            <span class="product-price">${formatPrice(p.price)}</span>
+            ${p.oldPrice ? `<span class="product-old-price">${formatPrice(p.oldPrice)}</span>` : ''}
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div class="product-rating">
+              <span>${p.rating}</span>
+              <span style="color:var(--secondary);">★</span>
+            </div>
+            <button class="add-to-cart-btn" onclick="event.stopPropagation();addToCart(${p.id})" title="Add to Cart">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Filter tabs
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentCat = tab.dataset.cat;
+    renderProducts();
+  });
+});
+
+// Sort
+document.getElementById('sortSelect').addEventListener('change', (e) => {
+  currentSort = e.target.value;
+  renderProducts();
+});
+
+// Check URL params
+const params = new URLSearchParams(window.location.search);
+const catParam = params.get('cat');
+if (catParam) {
+  currentCat = catParam;
+  document.querySelectorAll('.filter-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.cat === catParam);
+  });
+}
+
+renderProducts();
+</script>
+</body>
+</html>
